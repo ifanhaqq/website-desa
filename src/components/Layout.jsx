@@ -8,7 +8,6 @@ import {
   Phone,
   Mail,
   Clock,
-  TreePine,
   ChevronRight,
 } from "lucide-react";
 import LogoKliris from "../assets/img/logo-kliris.webp";
@@ -132,8 +131,8 @@ function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center">
-                <TreePine className="w-5 h-5 text-white" />
+              <div className="w-10 h-10">
+                <img src={LogoKliris} alt="" />
               </div>
               <span className="text-lg font-bold text-white">
                 Desa Kliris
