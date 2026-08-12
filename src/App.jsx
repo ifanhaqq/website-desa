@@ -9,8 +9,8 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Navigate to="/profil" replace />} />
-        <Route path="/profil" element={<ProfilPage />} />
+        <Route path="/" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<ProfilPage />} />
         <Route path="/demografi" element={<DemografiPage />} />
         <Route path="/berita" element={<BeritaPage />} />
         <Route path="/layanan" element={<LayananPage />} />

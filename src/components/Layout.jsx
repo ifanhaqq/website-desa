@@ -13,7 +13,7 @@ import {
 import LogoKliris from "../assets/img/logo-kliris.webp";
 
 const navLinks = [
-  { path: "/profil", label: "Profil Desa" },
+  { path: "/", label: "Profil Desa" },
   { path: "/layanan", label: "Layanan" },
 ];
 
@@ -26,7 +26,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/profil" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10">
               <img src={LogoKliris} alt="" />
             </div>
