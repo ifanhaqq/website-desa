@@ -11,11 +11,10 @@ import {
   TreePine,
   ChevronRight,
 } from "lucide-react";
+import LogoKliris from "../assets/img/logo-kliris.webp";
 
 const navLinks = [
   { path: "/profil", label: "Profil Desa" },
-  { path: "/demografi", label: "Demografi" },
-  { path: "/berita", label: "Berita" },
   { path: "/layanan", label: "Layanan" },
 ];
 
@@ -29,15 +28,15 @@ function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/profil" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-shadow">
-              <TreePine className="w-5 h-5 text-white" />
+            <div className="w-10 h-10">
+              <img src={LogoKliris} alt="" />
             </div>
             <div>
               <span className="text-lg font-bold text-slate-800 tracking-tight">
                 Desa
               </span>
               <span className="text-lg font-bold text-emerald-600 tracking-tight ml-1">
-                [Nama Desa]
+                Kliris
               </span>
             </div>
           </Link>
@@ -50,11 +49,10 @@ function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                    isActive
-                      ? "text-emerald-700 bg-emerald-50"
-                      : "text-slate-600 hover:text-emerald-600 hover:bg-emerald-50/50"
-                  }`}
+                  className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${isActive
+                    ? "text-emerald-700 bg-emerald-50"
+                    : "text-slate-600 hover:text-emerald-600 hover:bg-emerald-50/50"
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -102,16 +100,14 @@ function Navbar() {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                      isActive
-                        ? "text-emerald-700 bg-emerald-50"
-                        : "text-slate-600 hover:text-emerald-600 hover:bg-emerald-50/50"
-                    }`}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive
+                      ? "text-emerald-700 bg-emerald-50"
+                      : "text-slate-600 hover:text-emerald-600 hover:bg-emerald-50/50"
+                      }`}
                   >
                     <ChevronRight
-                      className={`w-4 h-4 transition-transform ${
-                        isActive ? "text-emerald-500" : "text-slate-400"
-                      }`}
+                      className={`w-4 h-4 transition-transform ${isActive ? "text-emerald-500" : "text-slate-400"
+                        }`}
                     />
                     {link.label}
                   </Link>
@@ -140,12 +136,12 @@ function Footer() {
                 <TreePine className="w-5 h-5 text-white" />
               </div>
               <span className="text-lg font-bold text-white">
-                Desa [Nama Desa]
+                Desa Kliris
               </span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Website resmi Desa [Nama Desa], Kecamatan [Nama Kecamatan],
-              Kabupaten [Nama Kabupaten], Provinsi [Nama Provinsi].
+              Website resmi Desa Kliris, Kecamatan Boja,
+              Kabupaten Kendal, Provinsi Jawa Tengah.
             </p>
           </div>
 
@@ -158,17 +154,16 @@ function Footer() {
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <span>
-                  Jl. [Nama Jalan] No. [XX], Desa [Nama Desa], Kec. [Nama
-                  Kecamatan]
+                  Jl. Sokorini No. 01, Dsn. Krajan Rt.01 Rw.01, Desa Kliris, Kec. Boja, Kendal
                 </span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>(0XX) XXXX-XXXX</span>
+                <span>-</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>desa@[namadesa].go.id</span>
+                <span>desakliris001@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -181,14 +176,11 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-sm">
                 <Clock className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Senin - Jumat: 08.00 - 16.00</span>
+                <span>Senin - Jumat: 09.00 - 14.00</span>
               </li>
-              <li className="flex items-center gap-3 text-sm">
-                <Clock className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Sabtu: 08.00 - 12.00</span>
-              </li>
+
               <li className="text-sm text-slate-500">
-                Minggu & Hari Libur: Tutup
+                Akhir Pekan Tutup
               </li>
             </ul>
           </div>
@@ -218,9 +210,8 @@ function Footer() {
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-center text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} Desa [Nama Desa]. Seluruh hak
-            cipta dilindungi. Website ini merupakan prototipe untuk keperluan
-            mockup.
+            &copy; {new Date().getFullYear()} Desa Kliris. Seluruh hak
+            cipta dilindungi.
           </p>
         </div>
       </div>

@@ -6,12 +6,12 @@ export const populationStats = {
 };
 
 export const genderData = [
-  { name: "Laki-laki", value: 2156, fill: "#10b981" },
+  { name: "Laki-laki", value: 2156, fill: "#29A645" },
   { name: "Perempuan", value: 2127, fill: "#6366f1" },
 ];
 
 export const religionData = [
-  { name: "Islam", value: 3842, fill: "#10b981" },
+  { name: "Islam", value: 3842, fill: "#29A645" },
   { name: "Kristen", value: 215, fill: "#6366f1" },
   { name: "Katolik", value: 128, fill: "#f59e0b" },
   { name: "Hindu", value: 56, fill: "#ef4444" },

@@ -184,7 +184,7 @@ function DemoPieChart({ data, title, icon: Icon }) {
 }
 
 /* ─── Bar Chart Component ─── */
-function DemoBarChart({ data, title, icon: Icon, color = "#10b981" }) {
+function DemoBarChart({ data, title, icon: Icon, color = "#29A645" }) {
   return (
     <motion.div
       {...fadeInUp}
@@ -246,8 +246,7 @@ export default function DemografiPage() {
             </h1>
           </div>
           <p className="text-slate-500 max-w-2xl">
-            Dashboard publik data kependudukan Desa [Nama Desa]. Data yang
-            ditampilkan merupakan data dummy untuk keperluan mockup.
+            Dashboard publik data kependudukan Desa Kliris.
           </p>
         </motion.div>
 
@@ -275,7 +274,7 @@ export default function DemografiPage() {
             data={educationData}
             title="Tingkat Pendidikan"
             icon={BarChart3}
-            color="#10b981"
+            color="#29A645"
           />
           <DemoBarChart
             data={occupationData}

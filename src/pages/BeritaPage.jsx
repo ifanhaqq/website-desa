@@ -209,7 +209,7 @@ export default function BeritaPage() {
             </h1>
           </div>
           <p className="text-slate-500 max-w-2xl">
-            Informasi terkini seputar kegiatan dan pembangunan Desa [Nama Desa].
+            Informasi terkini seputar kegiatan dan pembangunan Desa Kliris.
           </p>
         </motion.div>
 

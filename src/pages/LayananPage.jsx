@@ -11,6 +11,27 @@ import {
   ScrollText,
 } from "lucide-react";
 
+import pdfBiodataKeluarga from "../assets/pdfs/Copy of FORMULIR BIODATA KELUARGA.pdf";
+import pdfPelaporanKelahiran from "../assets/pdfs/Copy of FORMULIR PELAPORAN KELAHIRAN.pdf";
+import pdfPelaporanKematian from "../assets/pdfs/Copy of FORMULIR PELAPORAN KEMATIAN.pdf";
+import pdfPeristiwaKependudukan from "../assets/pdfs/Copy of FORMULIR PENDAFTARAN PERISTIWA KEPENDUDUKAN.pdf";
+import pdfPerpindahanPenduduk from "../assets/pdfs/Copy of FORMULIR PENDAFTARAN PERPINDAHAN PENDUDUK.pdf";
+import pdfPersyaratanDokumen from "../assets/pdfs/Copy of PERSYARATAN DOKUMEN KEPENDUDUKAN.pdf";
+import pdfDomisiliSekolah from "../assets/pdfs/Copy of SURAT KETERANGAN DOMISILI PENDAFTARAN SEKOLAH.pdf";
+import pdfPengantar from "../assets/pdfs/Copy of SURAT KETERANGAN PENGANTAR.pdf";
+import pdfTidakMampu from "../assets/pdfs/Copy of SURAT KETERANGAN TIDAK MAMPU.pdf";
+import pdfSuratKuasa from "../assets/pdfs/Copy of SURAT KUASA DALAM PELAYANAN ADMINISTRASI KEPENDUDUKAN.pdf";
+import pdfAlamatAdministrasi from "../assets/pdfs/Copy of SURAT PERNYATAAN ALAMAT DIGUNAKAN DALAM ADMINISTRASI KEPENDUDUKAN.pdf";
+import pdfAlamatRumahSendiri from "../assets/pdfs/Copy of SURAT PERNYATAAN MENGGUNAKAN ALAMAT RUMAH MILIK SENDIRI.pdf";
+import pdfPengakuanAnak from "../assets/pdfs/Copy of SURAT PERNYATAAN PENGAKUAN ANAK.pdf";
+import pdfPenghasilanOrtu from "../assets/pdfs/Copy of SURAT PERNYATAAN PENGHASILAN ORANG TUA.pdf";
+import pdfPerubahanElemen from "../assets/pdfs/Copy of SURAT PERNYATAAN PERUBAHAN ELEMEN DATA KEPENDUDUKAN.pdf";
+import pdfSptjmKelahiran from "../assets/pdfs/Copy of SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK (SPTJM) KEBENARAN DATA KELAHIRAN.pdf";
+import pdfSptjmSuamiIsteri from "../assets/pdfs/Copy of SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK (SPTJM) KEBENARAN SEBAGAI PASANGAN SUAMI ISTERI.pdf";
+import pdfNumpangKK from "../assets/pdfs/Copy of SURAT PERNYATAAN TIDAK KEBERATAN NUMPANG KK.pdf";
+import pdfTidakPunyaDokumen from "../assets/pdfs/Copy of SURAT PERNYATAAN TIDAK MEMILIKI DOKUMEN KEPENDUDUKAN.pdf";
+import pdfSptjmPerkawinan from "../assets/pdfs/Copy of SURAT PERYATAAN TANGGUNG JAWAB MUTLAK PERKAWINAN PERCERAIAN BELUM TERCATAT.pdf";
+
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -62,44 +83,104 @@ const steps = [
 /* ─── Download Table Data ─── */
 const documents = [
   {
-    name: "Template Surat Keterangan Domisili",
-    description:
-      "Surat keterangan yang menerangkan tempat tinggal seseorang di wilayah desa.",
+    name: "Formulir Biodata Keluarga",
+    description: "Formulir isian data lengkap anggota keluarga untuk pemutakhiran biodata.",
+    file: pdfBiodataKeluarga,
   },
   {
-    name: "Template Surat Keterangan Usaha",
-    description:
-      "Surat keterangan untuk keperluan legalitas usaha mikro dan kecil.",
+    name: "Formulir Pelaporan Kelahiran",
+    description: "Formulir permohonan dan pelaporan peristiwa kelahiran warga desa.",
+    file: pdfPelaporanKelahiran,
   },
   {
-    name: "Template Surat Pengantar SKCK",
-    description:
-      "Surat pengantar dari desa untuk pembuatan SKCK di kepolisian.",
+    name: "Formulir Pelaporan Kematian",
+    description: "Formulir pelaporan kematian untuk pengurusan akta kematian.",
+    file: pdfPelaporanKematian,
   },
   {
-    name: "Template Surat Keterangan Tidak Mampu",
-    description:
-      "Surat keterangan bagi warga yang memerlukan bantuan sosial atau keringanan biaya.",
+    name: "Formulir Pendaftaran Peristiwa Kependudukan",
+    description: "Formulir permohonan penerbitan atau perubahan dokumen kependudukan.",
+    file: pdfPeristiwaKependudukan,
   },
   {
-    name: "Template Surat Keterangan Kelahiran",
-    description:
-      "Surat keterangan kelahiran untuk keperluan pembuatan akta kelahiran.",
+    name: "Formulir Pendaftaran Perpindahan Penduduk",
+    description: "Formulir permohonan surat keterangan pindah domisili warga.",
+    file: pdfPerpindahanPenduduk,
   },
   {
-    name: "Template Surat Keterangan Kematian",
-    description:
-      "Surat keterangan kematian untuk keperluan administrasi kependudukan.",
+    name: "Persyaratan Dokumen Kependudukan",
+    description: "Daftar syarat dan ketentuan berkas pengurusan administrasi desa.",
+    file: pdfPersyaratanDokumen,
   },
   {
-    name: "Template Formulir Permohonan KTP",
-    description:
-      "Formulir permohonan pembuatan atau perpanjangan KTP elektronik.",
+    name: "Surat Keterangan Domisili Pendaftaran Sekolah",
+    description: "Surat keterangan tempat tinggal warga untuk keperluan pendaftaran sekolah.",
+    file: pdfDomisiliSekolah,
   },
   {
-    name: "Template Surat Pindah",
-    description:
-      "Surat keterangan pindah domisili antar desa, kecamatan, atau kabupaten.",
+    name: "Surat Keterangan Pengantar",
+    description: "Surat pengantar umum dari desa untuk berbagai keperluan administrasi.",
+    file: pdfPengantar,
+  },
+  {
+    name: "Surat Keterangan Tidak Mampu",
+    description: "Surat keterangan bagi warga yang memerlukan bantuan sosial atau beasiswa.",
+    file: pdfTidakMampu,
+  },
+  {
+    name: "Surat Kuasa dalam Pelayanan Administrasi Kependudukan",
+    description: "Surat kuasa pengurusan dokumen kependudukan jika diwakilkan.",
+    file: pdfSuratKuasa,
+  },
+  {
+    name: "Surat Pernyataan Alamat Digunakan Dalam Administrasi Kependudukan",
+    description: "Surat pernyataan keabsahan penggunaan alamat tinggal warga.",
+    file: pdfAlamatAdministrasi,
+  },
+  {
+    name: "Surat Pernyataan Menggunakan Alamat Rumah milik Rumah Milik Sendiri",
+    description: "Surat pernyataan kepemilikan dan penggunaan alamat rumah pribadi.",
+    file: pdfAlamatRumahSendiri,
+  },
+  {
+    name: "Surat Pernyataan Pengakuan Anak",
+    description: "Surat pernyataan resmi untuk pengurusan akta pengakuan anak.",
+    file: pdfPengakuanAnak,
+  },
+  {
+    name: "Surat Penghasilan Orang Tua",
+    description: "Surat keterangan jumlah penghasilan orang tua untuk keperluan administrasi.",
+    file: pdfPenghasilanOrtu,
+  },
+  {
+    name: "Surat Pernyataan Perubahan Elemen Data Kependudukan",
+    description: "Surat pernyataan permohonan perubahan elemen data pada KK/KTP.",
+    file: pdfPerubahanElemen,
+  },
+  {
+    name: "Surat Pernyataan Tanggung Jawab Mutlak (SPTJM) Kebenaran Data Kelahiran",
+    description: "Surat SPTJM kebenaran data kelahiran tanpa surat keterangan medis.",
+    file: pdfSptjmKelahiran,
+  },
+  {
+    name: "Surat Pernyataan Tanggung Jawab Mutlak (SPTJM) Kebenaran Sebagai Pasangan Suami Isteri",
+    description: "Surat SPTJM keabsahan hubungan suami istri untuk administrasi kependudukan.",
+    file: pdfSptjmSuamiIsteri,
+  },
+  {
+    name: "Surat Penyataan Tidak Keberatan Numpang KK",
+    description: "Surat persetujuan dari kepala keluarga untuk warga yang menumpang KK.",
+    file: pdfNumpangKK,
+  },
+  {
+    name: "Surat Pernyataan Tidak Memiliki Dokumen Kependudukan",
+    description: "Surat pernyataan resmi bagi warga yang belum/tidak memiliki dokumen kependudukan.",
+    file: pdfTidakPunyaDokumen,
+  },
+  {
+    name: "Surat Pernyataan Tanggung Jawab Mutlak Perkawinan/ Peceraian Belum Tercatat",
+    description: "Surat SPTJM status perkawinan/perceraian yang belum tercatat di negara.",
+    file: pdfSptjmPerkawinan,
   },
 ];
 
@@ -265,10 +346,10 @@ function DownloadTable() {
                   </span>
                 </td>
                 <td className="px-6 py-4 text-center">
-                  <button className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors shadow-sm hover:shadow-md">
+                  <a href={doc.file} download={doc.name + ".pdf"} className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors shadow-sm hover:shadow-md">
                     <Download className="w-4 h-4" />
                     Unduh
-                  </button>
+                  </a>
                 </td>
               </motion.tr>
             ))}
@@ -297,10 +378,10 @@ function DownloadTable() {
                 </p>
               </div>
             </div>
-            <button className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors">
+            <a href={doc.file} download={doc.name + ".pdf"} className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors">
               <Download className="w-4 h-4" />
               Unduh Dokumen
-            </button>
+            </a>
           </motion.div>
         ))}
       </div>
@@ -325,7 +406,7 @@ export default function LayananPage() {
           </div>
           <p className="text-slate-500 max-w-2xl">
             Panduan dan template dokumen untuk kebutuhan administrasi warga Desa
-            [Nama Desa].
+            Kliris.
           </p>
         </motion.div>
 

@@ -11,9 +11,13 @@ import {
   MapPin,
   Mountain,
   ImageIcon,
+  Crown,
+  Quote,
+  Droplets,
+  Calendar,
 } from "lucide-react";
 
-import BgHero from "../assets/img/bg-hero.jpg"
+import BgHero from "../assets/img/hero.webp"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -85,11 +89,10 @@ function HeroSection() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
             Selamat Datang di
             <br />
-            <span className="text-emerald-300">Desa [Nama Desa]</span>
+            <span className="text-emerald-300">Desa Kliris</span>
           </h1>
           <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Kecamatan [Nama Kecamatan], Kabupaten [Nama Kabupaten], Provinsi
-            [Nama Provinsi]
+            Kecamatan Boja, Kabupaten Kendal, Provinsi Jawa Tengah
           </p>
         </motion.div>
       </div>
@@ -118,46 +121,185 @@ function TreePineIcon(props) {
 }
 
 /* ─── Sejarah Desa ─── */
+const kepalaDesaTimeline = [
+  { nama: "Demang Umbul", periode: "Era Demang", keterangan: "Pimpinan pertama Desa Kliris dengan jabatan Demang." },
+  { nama: "Bapak Soetarjo", periode: "1938 – 1952", keterangan: "Kepala Desa pertama setelah era Demang." },
+  { nama: "Bapak Meru Sammusi", periode: "1952 – 1960", keterangan: "Melanjutkan kepemimpinan Desa Kliris." },
+  { nama: "Bapak Sukardi Admowiyoto", periode: "1960 – 1982", keterangan: "Memulai pembenahan pembangunan, bahkan merelakan harta pribadi demi kemajuan desa." },
+  { nama: "Ibu Hartini S", periode: "1982 – 1990", keterangan: "Melanjutkan administrasi dari era sebelumnya." },
+  { nama: "Bapak Kiswanto", periode: "1990 – 1998", keterangan: "Terpilih melalui pemilihan Kepala Desa." },
+  { nama: "Ibu Hartini S", periode: "1998 – 2007", keterangan: "Kembali menjabat sebagai Kepala Desa." },
+  { nama: "Bapak Harsono", periode: "2007 – 2020", keterangan: "Menjabat dua periode kepemimpinan." },
+  { nama: "Ibu Dwi Mayanti Intansih", periode: "2020 – Sekarang", keterangan: "Kepala Desa Kliris saat ini." },
+];
+
 function SejarahSection() {
   return (
-    <section className="py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div {...fadeInUp} className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-emerald-600" />
+    <section className="py-16 lg:py-24 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-50/60 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Section Header */}
+        <motion.div {...fadeInUp} className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-3">
+            Sejarah Desa Kliris
+          </h2>
+          <p className="text-slate-500 max-w-xl mx-auto">
+            Menelusuri jejak sejarah dan perjalanan panjang Desa Kliris dari masa ke masa.
+          </p>
+        </motion.div>
+
+        {/* Origin Story Card */}
+        <motion.div
+          {...fadeInUp}
+          className="mb-16 lg:mb-20"
+        >
+          <div className="relative bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+            {/* Green accent top bar */}
+            <div className="h-1.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-500" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+              {/* Left: Quote highlight */}
+              <div className="lg:col-span-2 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-600 p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden">
+                {/* Decorative pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle, rgba(255,255,255,.2) 1px, transparent 1px)",
+                      backgroundSize: "24px 24px",
+                    }}
+                  />
+                </div>
+                <div className="relative">
+                  <Quote className="w-10 h-10 text-white/30 mb-4 rotate-180" />
+                  <blockquote className="text-lg lg:text-xl font-semibold text-white leading-relaxed mb-4">
+                    Desa Kliris berasal dari kata{" "}
+                    <span className="text-emerald-200 font-bold">"TIRIS"</span>{" "}
+                    yang dilambangkan di Makam Sokorini
+                  </blockquote>
+                  <div className="flex items-center gap-3 mt-6">
+                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                      <Droplets className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-emerald-100 text-sm font-medium">
+                        Sumber Air Kehidupan
+                      </p>
+                      <p className="text-emerald-200/70 text-xs">
+                        Asal mula nama Desa Kliris
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Story content */}
+              <div className="lg:col-span-3 p-8 lg:p-10">
+                <div className="space-y-5 text-slate-600 leading-relaxed text-sm lg:text-base">
+                  <p>
+                    Berdasarkan cerita penggalan-penggalan sejarah yang diceritakan oleh sesepuh
+                    masyarakat Desa Kliris, berhasil dirangkum cerita sejarah singkat. Sesungguhnya Desa Kliris
+                    berasal dari kata <strong className="text-emerald-700">"TIRIS"</strong> yang
+                    dilambangkan di Makam Sokorini — ada sebuah batu berlambang (gumukan kecil) yang konon
+                    dulunya bisa memancarkan air.
+                  </p>
+                  <p>
+                    Dalam bahasa Jawa dinamakan <strong className="text-emerald-700">"TIRIS"</strong>,
+                    dan dari pancaran air tersebut dipercaya bisa memakmurkan suatu wilayah. Apabila air
+                    tersebut memancar ke arah utara, maka wilayah itu akan menjadi makmur, dan seterusnya.
+                  </p>
+                  <p>
+                    Di samping "TIRIS", di dekatnya ada seperangkat alat gamelan. Konon kabarnya, bilamana
+                    alat tersebut mau dipinjam oleh masyarakat, harus dengan cara selamatan di makam
+                    tersebut, maka peralatan tersebut akan muncul. Sekarang tinggal puing-puing yang
+                    berupa batu.
+                  </p>
+                </div>
+              </div>
             </div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-slate-800">
-              Sejarah Desa
-            </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt.
-            </p>
-            <p>
-              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-              consectetur, adipisci velit, sed quia non numquam eius modi tempora
-              incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
-              enim ad minima veniam, quis nostrum exercitationem ullam corporis
-              suscipit laboriosam.
+        </motion.div>
+
+        {/* Leadership Timeline */}
+        <motion.div {...fadeInUp} className="mb-4">
+          <div className="text-center mb-10 lg:mb-12">
+            <h3 className="text-2xl lg:text-3xl font-bold text-slate-800 mb-3">
+              Perjalanan Kepemimpinan Desa
+            </h3>
+            <p className="text-slate-500 max-w-lg mx-auto">
+              Dari era Demang hingga saat ini, Desa Kliris telah dipimpin oleh pemimpin-pemimpin yang berdedikasi.
             </p>
           </div>
         </motion.div>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line — desktop center, mobile left */}
+          <div className="absolute left-5 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-200 lg:-translate-x-px" />
+
+          <div className="space-y-6 lg:space-y-8">
+            {kepalaDesaTimeline.map((item, index) => {
+              const isLeft = index % 2 === 0;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className={`relative flex items-start gap-4 lg:gap-0 ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
+                    }`}
+                >
+                  {/* Mobile dot */}
+                  <div className="lg:hidden relative z-10 flex-shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/25">
+                      <Calendar className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Content card */}
+                  <div className={`flex-1 lg:w-[calc(50%-2rem)] ${isLeft ? "lg:pr-12" : "lg:pl-12"
+                    }`}>
+                    <div className="group bg-white rounded-2xl border border-slate-100 p-5 lg:p-6 shadow-sm hover:shadow-lg hover:border-emerald-100 transition-all duration-300">
+                      <div className="flex items-start gap-4">
+                        {/* Icon */}
+                        <div className="hidden sm:flex w-12 h-12 bg-emerald-50 rounded-xl items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
+                          <Crown className="w-5 h-5 text-emerald-600" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
+                            <Calendar className="w-3 h-3" />
+                            {item.periode}
+                          </span>
+                          <h4 className="font-semibold text-slate-800 text-base lg:text-lg mb-1">
+                            {item.nama}
+                          </h4>
+                          <p className="text-sm text-slate-500 leading-relaxed">
+                            {item.keterangan}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop center dot */}
+                  <div className="hidden lg:flex absolute left-1/2 top-5 -translate-x-1/2 z-10">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/25 ring-4 ring-white">
+                      <span className="text-white text-xs font-bold">{index + 1}</span>
+                    </div>
+                  </div>
+
+                  {/* Spacer for the other side on desktop */}
+                  <div className="hidden lg:block lg:w-[calc(50%-2rem)]" />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -169,43 +311,50 @@ const visiMisiData = [
     icon: Eye,
     title: "Visi",
     description:
-      "Mewujudkan Desa [Nama Desa] yang mandiri, sejahtera, dan berbudaya menuju masyarakat yang adil dan makmur.",
+      "\"Kebersamaan Dalam Membangun demi Desa Kliris Yang Lebih Maju\" — Bersatu Membangun Desa Kliris menjadi Desa yang lebih baik, maju, sejahtera, dan bermartabat.",
     color: "emerald",
   },
   {
     icon: Target,
     title: "Misi 1",
     description:
-      "Meningkatkan kualitas pelayanan publik yang transparan, akuntabel, dan responsif terhadap kebutuhan masyarakat.",
+      "Meningkatkan pembangunan infrastruktur yang mendukung pereknomian desa seperti jalan, jembatan, serta infrastruktur strategis lainnya.",
     color: "teal",
   },
   {
     icon: Heart,
     title: "Misi 2",
     description:
-      "Meningkatkan kesejahteraan masyarakat melalui pemberdayaan ekonomi lokal dan pengembangan potensi desa.",
+      "Meningkatkan pembangunan di bidang kesehatan untuk mendorong derajat kesehatan masyarakat agar dapat berkerja lebih optimal dan memiliki harapan hidup yang lebih panjang.",
     color: "cyan",
   },
   {
     icon: Users,
     title: "Misi 3",
     description:
-      "Meningkatkan partisipasi masyarakat dalam pembangunan desa melalui musyawarah dan gotong royong.",
+      "Meningkatkan pembangunan di bidang pendidikan untuk mendorong peningkatan kualitas sumber daya manusia agar memiliki kecerdasan dan daya saing yang lebih baik.",
     color: "emerald",
   },
   {
     icon: BookOpen,
     title: "Misi 4",
     description:
-      "Meningkatkan kualitas sumber daya manusia melalui pendidikan, pelatihan, dan pengembangan keterampilan.",
+      "Meningkatkan pembangunan ekonomi mendorong semakin tumbuh dan berkembangnya pembangunna di bidang pertanian dalam arti luas, industri, perdagangan, dan pariwisata.",
     color: "teal",
   },
   {
     icon: Landmark,
     title: "Misi 5",
     description:
-      "Melestarikan nilai-nilai budaya dan kearifan lokal sebagai identitas dan kebanggaan masyarakat desa.",
+      "Menciptakan tata kelola pemerintahan yang baik (good govermence) berdasarkan demokratisasi, transparansi, penegakan hukum, berkeadilan, kesetaraan gender, dan mengutamakan pelyanan kepada masyarakat.",
     color: "cyan",
+  },
+  {
+    icon: Sparkles,
+    title: "Misi 6",
+    description:
+      "Mengupayakan pelestarian sumber daya alam untuk memenuhi kebutuhan dan pemerataan pembangunan guna meningkatkan perekonomian.",
+    color: "emerald",
   },
 ];
 
@@ -236,7 +385,7 @@ function VisiMisiSection() {
             Visi & Misi
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Arah dan tujuan pembangunan Desa [Nama Desa] untuk kesejahteraan
+            Arah dan tujuan pembangunan Desa Kliris untuk kesejahteraan
             masyarakat.
           </p>
         </motion.div>
@@ -276,14 +425,19 @@ function VisiMisiSection() {
 
 /* ─── Struktur Pemerintahan ─── */
 const pemerintahanData = [
-  { nama: "[Nama Lengkap]", jabatan: "Kepala Desa" },
-  { nama: "[Nama Lengkap]", jabatan: "Sekretaris Desa" },
-  { nama: "[Nama Lengkap]", jabatan: "Kaur Keuangan" },
-  { nama: "[Nama Lengkap]", jabatan: "Kaur Perencanaan" },
-  { nama: "[Nama Lengkap]", jabatan: "Kasi Pemerintahan" },
-  { nama: "[Nama Lengkap]", jabatan: "Kasi Kesejahteraan" },
-  { nama: "[Nama Lengkap]", jabatan: "Kasi Pelayanan" },
-  { nama: "[Nama Lengkap]", jabatan: "Kaur Tata Usaha & Umum" },
+  { nama: "Intan Mayanti Intansih", jabatan: "Kepala Desa" },
+  { nama: "Mudiyono, S.Pd", jabatan: "Sekretaris Desa" },
+  { nama: "Puji Prihartono", jabatan: "Kaur Keuangan" },
+  { nama: "Purnomo", jabatan: "Kaur Perencanaan" },
+  { nama: "Warsito", jabatan: "Kaur Tata Usaha & Umum" },
+  { nama: "Abdul Rohman", jabatan: "Kasi Kesejahteraan" },
+  { nama: "Sukamto", jabatan: "Kasi Pemerintahan" },
+  { nama: "Muchyidin", jabatan: "Kasi Pelayanan" },
+  { nama: "Bunak Yanto", jabatan: "Kadus I" },
+  { nama: "Siti Chotidjah", jabatan: "Kadus II" },
+  { nama: "Tukiyatman", jabatan: "Kadus III" },
+  { nama: "Sulistiyono", jabatan: "Kadus IV" },
+  { nama: "Muhamad Saefudin", jabatan: "Kadus V" },
 ];
 
 function PemerintahanSection() {
@@ -295,7 +449,7 @@ function PemerintahanSection() {
             Struktur Pemerintahan Desa
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Perangkat desa yang melayani masyarakat Desa [Nama Desa].
+            Perangkat desa yang melayani masyarakat Desa Kliris.
           </p>
         </motion.div>
         <motion.div
@@ -314,7 +468,7 @@ function PemerintahanSection() {
                 <div className="w-16 h-16 bg-slate-300 rounded-full flex items-center justify-center mb-2">
                   <Users className="w-8 h-8 text-slate-400" />
                 </div>
-                <span className="text-xs text-slate-400">Foto 16:9</span>
+                <span className="text-xs text-slate-400">Foto Perangkat Desa</span>
                 <div className="absolute top-2 right-2 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
                   {index + 1}
                 </div>
@@ -337,10 +491,10 @@ function PemerintahanSection() {
 
 /* ─── Letak Geografis ─── */
 const batasDesa = [
-  { arah: "Utara", deskripsi: "Desa [Nama Desa A]" },
-  { arah: "Selatan", deskripsi: "Desa [Nama Desa B]" },
-  { arah: "Timur", deskripsi: "Desa [Nama Desa C]" },
-  { arah: "Barat", deskripsi: "Desa [Nama Desa D]" },
+  { arah: "Utara", deskripsi: "Desa Bubakan, Kecamatan Mijen, Kota Semarang" },
+  { arah: "Selatan", deskripsi: "Desa Puguh, Kecamatan Boja" },
+  { arah: "Timur", deskripsi: "Desa Leban, Kecamatan Boja" },
+  { arah: "Barat", deskripsi: "Desa Ngabean, Kecamatan Boja" },
 ];
 
 function GeografiSection() {
@@ -352,17 +506,20 @@ function GeografiSection() {
             Letak Geografis
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
-            Informasi wilayah dan batas administratif Desa [Nama Desa].
+            Informasi wilayah dan batas administratif Desa Kliris.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Text content */}
           <motion.div {...fadeInUp}>
             <p className="text-slate-600 leading-relaxed mb-6">
-              Desa [Nama Desa] terletak di Kecamatan [Nama Kecamatan], Kabupaten
-              [Nama Kabupaten], Provinsi [Nama Provinsi]. Desa ini memiliki luas
-              wilayah ± [X.XXX] hektar yang terdiri dari area permukiman, lahan
-              pertanian, dan kawasan hutan.
+              Desa Kliris merupakan salah satu desa yang berada di Kecamatan Boja, Kabupaten Kendal,
+              Provinsi Jawa Tengah. Desa ini memiliki letak yang strategis karena berada di jalur Jalan Raya
+              Bubakan–Gonoharjo Limbangan dan Pasigitan–Boja. Secara topografi, Desa Kliris berada di
+              wilayah pegunungan dengan ketinggian sekitar 635 meter di atas permukaan laut, suhu rata-rata
+              22–27°C, serta curah hujan sekitar 1.823 mm/tahun. Sebagian besar wilayah desa dimanfaatkan
+              untuk lahan pertanian, permukiman, dan perkebunan sehingga mayoritas penduduk bekerja
+              sebagai petani, buruh tani, buruh bangunan, dan buruh industri. Luas wilayah ± 264,829 hektar.
             </p>
             <h4 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
               <Compass className="w-5 h-5 text-emerald-500" />
@@ -395,8 +552,8 @@ function GeografiSection() {
           <motion.div {...fadeInUp}>
             <div className="relative aspect-video rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
               <iframe
-                title="Lokasi Desa"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2074%2C53.4791%2C-2.1934%2C53.4871&layer=mapnik&marker=53.4831%2C-2.2004"
+                title="Lokasi Desa Kliris"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=110.3136%2C-7.1238%2C110.3336%2C-7.1038&layer=mapnik&marker=-7.1138%2C110.3236"
                 className="absolute inset-0 w-full h-full border-0"
                 loading="lazy"
                 allowFullScreen
