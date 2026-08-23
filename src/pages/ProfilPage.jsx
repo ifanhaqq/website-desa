@@ -425,7 +425,7 @@ function VisiMisiSection() {
 
 /* ─── Struktur Pemerintahan ─── */
 const pemerintahanData = [
-  { nama: "Intan Mayanti Intansih", jabatan: "Kepala Desa" },
+  { nama: "Dwi Mayanti Intansih", jabatan: "Kepala Desa" },
   { nama: "Mudiyono, S.Pd", jabatan: "Sekretaris Desa" },
   { nama: "Puji Prihartono", jabatan: "Kaur Keuangan" },
   { nama: "Purnomo", jabatan: "Kaur Perencanaan" },
@@ -493,7 +493,7 @@ function PemerintahanSection() {
 const batasDesa = [
   { arah: "Utara", deskripsi: "Desa Bubakan, Kecamatan Mijen, Kota Semarang" },
   { arah: "Selatan", deskripsi: "Desa Puguh, Kecamatan Boja" },
-  { arah: "Timur", deskripsi: "Desa Leban, Kecamatan Boja" },
+  { arah: "Timur", deskripsi: "Desa Leban dan Desa Pasigitan, Kecamatan Boja" },
   { arah: "Barat", deskripsi: "Desa Ngabean, Kecamatan Boja" },
 ];
 
