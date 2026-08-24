@@ -13,7 +13,22 @@ import {
   Search,
 } from "lucide-react";
 
-import excelFormulir from "../assets/excels/Formulir Persyaratan Dokumen Kependudukan.xlsx";
+import excelBiodataKeluarga from "../assets/excels/Lembar Biodata Keluarga.xlsx";
+import excelKelahiran from "../assets/excels/Lembar Kelahiran.xlsx";
+import excelKematian from "../assets/excels/Lembar Kematian.xlsx";
+import excelPelaporanKematian from "../assets/excels/Lembar Pelaporan Kematian.xlsx";
+import excelPendaftaran from "../assets/excels/Lembar Pendaftaran.xlsx";
+import excelPendatangORLA from "../assets/excels/Lembar Pendatang Alamat ORLA.xlsx";
+import excelPendatangSendiri from "../assets/excels/Lembar Pendatang Alamat Sendiri.xlsx";
+import excelPendatangNumpangKK from "../assets/excels/Lembar Pendatang Numpang KK.xlsx";
+import excelPengakuanAnak from "../assets/excels/Lembar Pengakuan Anak.xlsx";
+import excelPerubahanData from "../assets/excels/Lembar Perubahan Data.xlsx";
+import excelPindah from "../assets/excels/Lembar Pindah.xlsx";
+import excelSPJTMKawinCerai from "../assets/excels/Lembar SPJTM Kawin Cerai.xlsx";
+import excelSPTJMKelahiran from "../assets/excels/Lembar SPTJM Kelahiran.xlsx";
+import excelSPTJMPasutri from "../assets/excels/Lembar SPTJM Pasutri.xlsx";
+import excelSuratKuasa from "../assets/excels/Lembar Surat Kuasa.xlsx";
+import excelTanpaDokduk from "../assets/excels/Lembar Tanpa Dokduk.xlsx";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -34,6 +49,106 @@ const staggerItem = {
   viewport: { once: true },
   transition: { duration: 0.5 },
 };
+
+/* ─── Excel Files Data ─── */
+const excelFiles = [
+  {
+    name: "Lembar Biodata Keluarga",
+    filename: "Lembar Biodata Keluarga.xlsx",
+    href: excelBiodataKeluarga,
+    description: "Formulir biodata anggota keluarga untuk keperluan administrasi kependudukan.",
+  },
+  {
+    name: "Lembar Kelahiran",
+    filename: "Lembar Kelahiran.xlsx",
+    href: excelKelahiran,
+    description: "Formulir pelaporan dan pendaftaran kelahiran bayi baru.",
+  },
+  {
+    name: "Lembar Kematian",
+    filename: "Lembar Kematian.xlsx",
+    href: excelKematian,
+    description: "Formulir pencatatan dan pelaporan kematian warga.",
+  },
+  {
+    name: "Lembar Pelaporan Kematian",
+    filename: "Lembar Pelaporan Kematian.xlsx",
+    href: excelPelaporanKematian,
+    description: "Formulir pelaporan kematian kepada pihak berwenang.",
+  },
+  {
+    name: "Lembar Pendaftaran",
+    filename: "Lembar Pendaftaran.xlsx",
+    href: excelPendaftaran,
+    description: "Formulir pendaftaran umum untuk keperluan administrasi desa.",
+  },
+  {
+    name: "Lembar Pendatang Alamat ORLA",
+    filename: "Lembar Pendatang Alamat ORLA.xlsx",
+    href: excelPendatangORLA,
+    description: "Formulir pendatang dengan alamat orang tua asli (ORLA).",
+  },
+  {
+    name: "Lembar Pendatang Alamat Sendiri",
+    filename: "Lembar Pendatang Alamat Sendiri.xlsx",
+    href: excelPendatangSendiri,
+    description: "Formulir pendatang yang menggunakan alamat sendiri.",
+  },
+  {
+    name: "Lembar Pendatang Numpang KK",
+    filename: "Lembar Pendatang Numpang KK.xlsx",
+    href: excelPendatangNumpangKK,
+    description: "Formulir pendatang yang menumpang di Kartu Keluarga orang lain.",
+  },
+  {
+    name: "Lembar Pengakuan Anak",
+    filename: "Lembar Pengakuan Anak.xlsx",
+    href: excelPengakuanAnak,
+    description: "Formulir surat pengakuan anak untuk keperluan hukum.",
+  },
+  {
+    name: "Lembar Perubahan Data",
+    filename: "Lembar Perubahan Data.xlsx",
+    href: excelPerubahanData,
+    description: "Formulir permohonan perubahan data kependudukan.",
+  },
+  {
+    name: "Lembar Pindah",
+    filename: "Lembar Pindah.xlsx",
+    href: excelPindah,
+    description: "Formulir surat keterangan pindah domisili warga.",
+  },
+  {
+    name: "Lembar SPJTM Kawin Cerai",
+    filename: "Lembar SPJTM Kawin Cerai.xlsx",
+    href: excelSPJTMKawinCerai,
+    description: "Surat Pernyataan Tanggung Jawab Mutlak terkait status kawin/cerai.",
+  },
+  {
+    name: "Lembar SPTJM Kelahiran",
+    filename: "Lembar SPTJM Kelahiran.xlsx",
+    href: excelSPTJMKelahiran,
+    description: "Surat Pernyataan Tanggung Jawab Mutlak terkait kelahiran.",
+  },
+  {
+    name: "Lembar SPTJM Pasutri",
+    filename: "Lembar SPTJM Pasutri.xlsx",
+    href: excelSPTJMPasutri,
+    description: "Surat Pernyataan Tanggung Jawab Mutlak untuk pasangan suami istri.",
+  },
+  {
+    name: "Lembar Surat Kuasa",
+    filename: "Lembar Surat Kuasa.xlsx",
+    href: excelSuratKuasa,
+    description: "Formulir surat kuasa untuk pengurusan administrasi oleh pihak lain.",
+  },
+  {
+    name: "Lembar Tanpa Dokduk",
+    filename: "Lembar Tanpa Dokduk.xlsx",
+    href: excelTanpaDokduk,
+    description: "Formulir keterangan bagi warga yang belum memiliki dokumen kependudukan.",
+  },
+];
 
 /* ─── Stepper Data ─── */
 const steps = [
@@ -162,30 +277,30 @@ function PanduanMengisiFormulir() {
   const panduanSteps = [
     {
       step: 1,
-      title: "Unduh File Excel",
+      title: "Pilih & Unduh Formulir",
       description:
-        'Klik tombol "Unduh Formulir" di bagian bawah halaman ini. File Excel berisi semua formulir dan persyaratan dokumen kependudukan dalam satu file terpusat.',
+        'Gulir ke bagian "Pusat Unduhan" di bawah halaman ini, lalu pilih dan unduh formulir Excel yang sesuai dengan kebutuhan administrasi Anda.',
       icon: Download,
     },
     {
       step: 2,
-      title: "Pilih Sheet Formulir",
+      title: "Buka File Excel",
       description:
-        "Buka file Excel yang telah diunduh, lalu pilih sheet (lembar kerja) yang sesuai dengan jenis formulir yang Anda butuhkan. Setiap sheet berisi satu formulir lengkap.",
+        "Buka file Excel yang telah diunduh menggunakan Microsoft Excel, Google Sheets, atau aplikasi spreadsheet lainnya.",
       icon: Search,
     },
     {
       step: 3,
       title: "Isi Data Formulir",
       description:
-        "Isi kolom-kolom yang tersedia pada sheet formulir yang dipilih dengan data yang benar dan lengkap sesuai kebutuhan administrasi Anda.",
+        "Isi kolom-kolom yang tersedia pada formulir dengan data yang benar dan lengkap sesuai kebutuhan administrasi Anda.",
       icon: FileSpreadsheet,
     },
     {
       step: 4,
       title: "Cetak Formulir",
       description:
-        "Setelah semua data terisi, cetak sheet formulir yang sudah diisi. Pastikan hasil cetak terbaca jelas dan sesuai format yang diminta.",
+        "Setelah semua data terisi, cetak formulir yang sudah diisi. Pastikan hasil cetak terbaca jelas dan sesuai format yang diminta.",
       icon: Printer,
     },
   ];
@@ -213,14 +328,13 @@ function PanduanMengisiFormulir() {
             <FileSpreadsheet className="w-4 h-4 text-blue-600" />
           </div>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Seluruh formulir dan persyaratan dokumen kependudukan kini tersedia
-            dalam{" "}
+            Formulir administrasi kependudukan Desa Kliris tersedia dalam{" "}
             <span className="font-semibold text-blue-700">
-              satu file Excel terpusat
-            </span>
-            . File ini berisi banyak sheet (lembar kerja) yang masing-masing
-            memuat satu formulir lengkap. Cukup unduh satu file, pilih sheet
-            yang dibutuhkan, isi, dan cetak.
+              file Excel terpisah
+            </span>{" "}
+            untuk setiap jenis keperluan. Pilih formulir yang sesuai dengan
+            kebutuhan Anda, unduh, isi datanya, lalu cetak untuk dibawa ke
+            kantor desa.
           </p>
         </div>
 
@@ -263,71 +377,62 @@ function PanduanMengisiFormulir() {
 function DownloadSection() {
   return (
     <motion.div {...fadeInUp}>
-      <div className="flex items-center gap-3 mb-8">
+      <div className="flex items-center gap-3 mb-2">
         <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
           <FileDown className="w-5 h-5 text-emerald-600" />
         </div>
         <div>
           <h2 className="text-xl lg:text-2xl font-bold text-slate-800">
-            Unduh Formulir
+            Pusat Unduhan
           </h2>
           <p className="text-sm text-slate-500">
-            Satu file Excel berisi semua formulir administrasi desa
+            Unduh formulir yang sesuai dengan kebutuhan administrasi Anda
           </p>
         </div>
       </div>
 
-      {/* Download Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 lg:p-8 shadow-xl shadow-emerald-600/20 overflow-hidden relative"
-      >
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4" />
+      <p className="text-sm text-slate-400 mb-8 ml-[52px]">
+        {excelFiles.length} formulir tersedia
+      </p>
 
-        <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-6">
-          {/* Icon & Info */}
-          <div className="flex items-start gap-4 flex-1">
-            <div className="w-14 h-14 lg:w-16 lg:h-16 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0 border border-white/20">
-              <FileSpreadsheet className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg lg:text-xl font-bold text-white mb-1">
-                Formulir Persyaratan Dokumen Kependudukan
-              </h3>
-              <p className="text-emerald-100 text-sm leading-relaxed mb-3">
-                File Excel terpusat yang memuat seluruh formulir dan persyaratan
-                administrasi kependudukan Desa Kliris. Berisi banyak sheet untuk
-                berbagai jenis formulir — mulai dari biodata keluarga, pelaporan
-                kelahiran/kematian, surat keterangan, hingga surat pernyataan.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-lg border border-white/10">
-                  <FileSpreadsheet className="w-3 h-3" />
-                  Format Excel (.xlsx)
-                </span>
-                <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-lg border border-white/10">
-                  <ClipboardList className="w-3 h-3" />
-                  Semua Formulir dalam Satu File
-                </span>
+      {/* Download Cards Grid */}
+      <motion.div
+        {...staggerContainer}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      >
+        {excelFiles.map((file, index) => (
+          <motion.a
+            key={index}
+            {...staggerItem}
+            href={file.href}
+            download={file.filename}
+            className="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col"
+          >
+            {/* Icon & Title */}
+            <div className="flex items-start gap-3 mb-3">
+              <div className="w-10 h-10 bg-emerald-50 group-hover:bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
+                <FileSpreadsheet className="w-5 h-5 text-emerald-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="font-semibold text-slate-800 text-sm leading-snug group-hover:text-emerald-700 transition-colors">
+                  {file.name}
+                </h4>
+                <span className="text-xs text-slate-400">.xlsx</span>
               </div>
             </div>
-          </div>
 
-          {/* Download Button */}
-          <a
-            href={excelFormulir}
-            download="Formulir Persyaratan Dokumen Kependudukan.xlsx"
-            className="w-full lg:w-auto inline-flex items-center justify-center gap-2.5 bg-white hover:bg-emerald-50 text-emerald-700 font-semibold text-sm lg:text-base px-6 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] flex-shrink-0"
-          >
-            <Download className="w-5 h-5" />
-            Unduh Formulir
-          </a>
-        </div>
+            {/* Description */}
+            <p className="text-xs text-slate-500 leading-relaxed mb-4 flex-1">
+              {file.description}
+            </p>
+
+            {/* Download indicator */}
+            <div className="flex items-center gap-2 text-emerald-600 text-xs font-semibold group-hover:text-emerald-700 transition-colors mt-auto">
+              <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+              Unduh Formulir
+            </div>
+          </motion.a>
+        ))}
       </motion.div>
     </motion.div>
   );
