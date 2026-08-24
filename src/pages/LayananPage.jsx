@@ -13,22 +13,7 @@ import {
   Search,
 } from "lucide-react";
 
-import excelBiodataKeluarga from "../assets/excels/Lembar Biodata Keluarga.xlsx";
-import excelKelahiran from "../assets/excels/Lembar Kelahiran.xlsx";
-import excelKematian from "../assets/excels/Lembar Kematian.xlsx";
-import excelPelaporanKematian from "../assets/excels/Lembar Pelaporan Kematian.xlsx";
-import excelPendaftaran from "../assets/excels/Lembar Pendaftaran.xlsx";
-import excelPendatangORLA from "../assets/excels/Lembar Pendatang Alamat ORLA.xlsx";
-import excelPendatangSendiri from "../assets/excels/Lembar Pendatang Alamat Sendiri.xlsx";
-import excelPendatangNumpangKK from "../assets/excels/Lembar Pendatang Numpang KK.xlsx";
-import excelPengakuanAnak from "../assets/excels/Lembar Pengakuan Anak.xlsx";
-import excelPerubahanData from "../assets/excels/Lembar Perubahan Data.xlsx";
-import excelPindah from "../assets/excels/Lembar Pindah.xlsx";
-import excelSPJTMKawinCerai from "../assets/excels/Lembar SPJTM Kawin Cerai.xlsx";
-import excelSPTJMKelahiran from "../assets/excels/Lembar SPTJM Kelahiran.xlsx";
-import excelSPTJMPasutri from "../assets/excels/Lembar SPTJM Pasutri.xlsx";
-import excelSuratKuasa from "../assets/excels/Lembar Surat Kuasa.xlsx";
-import excelTanpaDokduk from "../assets/excels/Lembar Tanpa Dokduk.xlsx";
+import { useDownloadFiles } from "../hooks/useDownloadFiles";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -49,106 +34,6 @@ const staggerItem = {
   viewport: { once: true },
   transition: { duration: 0.5 },
 };
-
-/* ─── Excel Files Data ─── */
-const excelFiles = [
-  {
-    name: "Lembar Biodata Keluarga",
-    filename: "Lembar Biodata Keluarga.xlsx",
-    href: excelBiodataKeluarga,
-    description: "Formulir biodata anggota keluarga untuk keperluan administrasi kependudukan.",
-  },
-  {
-    name: "Lembar Kelahiran",
-    filename: "Lembar Kelahiran.xlsx",
-    href: excelKelahiran,
-    description: "Formulir pelaporan dan pendaftaran kelahiran bayi baru.",
-  },
-  {
-    name: "Lembar Kematian",
-    filename: "Lembar Kematian.xlsx",
-    href: excelKematian,
-    description: "Formulir pencatatan dan pelaporan kematian warga.",
-  },
-  {
-    name: "Lembar Pelaporan Kematian",
-    filename: "Lembar Pelaporan Kematian.xlsx",
-    href: excelPelaporanKematian,
-    description: "Formulir pelaporan kematian kepada pihak berwenang.",
-  },
-  {
-    name: "Lembar Pendaftaran",
-    filename: "Lembar Pendaftaran.xlsx",
-    href: excelPendaftaran,
-    description: "Formulir pendaftaran umum untuk keperluan administrasi desa.",
-  },
-  {
-    name: "Lembar Pendatang Alamat ORLA",
-    filename: "Lembar Pendatang Alamat ORLA.xlsx",
-    href: excelPendatangORLA,
-    description: "Formulir pendatang dengan alamat orang tua asli (ORLA).",
-  },
-  {
-    name: "Lembar Pendatang Alamat Sendiri",
-    filename: "Lembar Pendatang Alamat Sendiri.xlsx",
-    href: excelPendatangSendiri,
-    description: "Formulir pendatang yang menggunakan alamat sendiri.",
-  },
-  {
-    name: "Lembar Pendatang Numpang KK",
-    filename: "Lembar Pendatang Numpang KK.xlsx",
-    href: excelPendatangNumpangKK,
-    description: "Formulir pendatang yang menumpang di Kartu Keluarga orang lain.",
-  },
-  {
-    name: "Lembar Pengakuan Anak",
-    filename: "Lembar Pengakuan Anak.xlsx",
-    href: excelPengakuanAnak,
-    description: "Formulir surat pengakuan anak untuk keperluan hukum.",
-  },
-  {
-    name: "Lembar Perubahan Data",
-    filename: "Lembar Perubahan Data.xlsx",
-    href: excelPerubahanData,
-    description: "Formulir permohonan perubahan data kependudukan.",
-  },
-  {
-    name: "Lembar Pindah",
-    filename: "Lembar Pindah.xlsx",
-    href: excelPindah,
-    description: "Formulir surat keterangan pindah domisili warga.",
-  },
-  {
-    name: "Lembar SPJTM Kawin Cerai",
-    filename: "Lembar SPJTM Kawin Cerai.xlsx",
-    href: excelSPJTMKawinCerai,
-    description: "Surat Pernyataan Tanggung Jawab Mutlak terkait status kawin/cerai.",
-  },
-  {
-    name: "Lembar SPTJM Kelahiran",
-    filename: "Lembar SPTJM Kelahiran.xlsx",
-    href: excelSPTJMKelahiran,
-    description: "Surat Pernyataan Tanggung Jawab Mutlak terkait kelahiran.",
-  },
-  {
-    name: "Lembar SPTJM Pasutri",
-    filename: "Lembar SPTJM Pasutri.xlsx",
-    href: excelSPTJMPasutri,
-    description: "Surat Pernyataan Tanggung Jawab Mutlak untuk pasangan suami istri.",
-  },
-  {
-    name: "Lembar Surat Kuasa",
-    filename: "Lembar Surat Kuasa.xlsx",
-    href: excelSuratKuasa,
-    description: "Formulir surat kuasa untuk pengurusan administrasi oleh pihak lain.",
-  },
-  {
-    name: "Lembar Tanpa Dokduk",
-    filename: "Lembar Tanpa Dokduk.xlsx",
-    href: excelTanpaDokduk,
-    description: "Formulir keterangan bagi warga yang belum memiliki dokumen kependudukan.",
-  },
-];
 
 /* ─── Stepper Data ─── */
 const steps = [
@@ -374,7 +259,7 @@ function PanduanMengisiFormulir() {
 }
 
 /* ─── Download Section ─── */
-function DownloadSection() {
+function DownloadSection({ files, loading }) {
   return (
     <motion.div {...fadeInUp}>
       <div className="flex items-center gap-3 mb-2">
@@ -392,54 +277,81 @@ function DownloadSection() {
       </div>
 
       <p className="text-sm text-slate-400 mb-8 ml-[52px]">
-        {excelFiles.length} formulir tersedia
+        {loading ? "Memuat..." : `${files.length} formulir tersedia`}
       </p>
 
-      {/* Download Cards Grid */}
-      <motion.div
-        {...staggerContainer}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-      >
-        {excelFiles.map((file, index) => (
-          <motion.a
-            key={index}
-            {...staggerItem}
-            href={file.href}
-            download={file.filename}
-            className="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col"
-          >
-            {/* Icon & Title */}
-            <div className="flex items-start gap-3 mb-3">
-              <div className="w-10 h-10 bg-emerald-50 group-hover:bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
-                <FileSpreadsheet className="w-5 h-5 text-emerald-600" />
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="animate-pulse bg-white rounded-xl border border-slate-200 p-5">
+              <div className="flex gap-3 mb-3">
+                <div className="w-10 h-10 bg-slate-100 rounded-xl" />
+                <div className="flex-1">
+                  <div className="h-4 bg-slate-100 rounded w-3/4 mb-2" />
+                  <div className="h-3 bg-slate-100 rounded w-1/3" />
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="font-semibold text-slate-800 text-sm leading-snug group-hover:text-emerald-700 transition-colors">
-                  {file.name}
-                </h4>
-                <span className="text-xs text-slate-400">.xlsx</span>
+              <div className="h-3 bg-slate-100 rounded w-full mb-2" />
+              <div className="h-3 bg-slate-100 rounded w-2/3" />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <motion.div
+          {...staggerContainer}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+          {files.map((file, index) => (
+            <motion.a
+              key={file.id}
+              {...staggerItem}
+              href={file.file_url}
+              download={file.filename}
+              className="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col"
+            >
+              {/* Icon & Title */}
+              <div className="flex items-start gap-3 mb-3">
+                <div className="w-10 h-10 bg-emerald-50 group-hover:bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
+                  <FileSpreadsheet className="w-5 h-5 text-emerald-600" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold text-slate-800 text-sm leading-snug group-hover:text-emerald-700 transition-colors">
+                    {file.name}
+                  </h4>
+                  <span className="text-xs text-slate-400">.xlsx</span>
+                </div>
               </div>
-            </div>
 
-            {/* Description */}
-            <p className="text-xs text-slate-500 leading-relaxed mb-4 flex-1">
-              {file.description}
-            </p>
+              {/* Description */}
+              {file.description && (
+                <p className="text-xs text-slate-500 leading-relaxed mb-4 flex-1">
+                  {file.description}
+                </p>
+              )}
 
-            {/* Download indicator */}
-            <div className="flex items-center gap-2 text-emerald-600 text-xs font-semibold group-hover:text-emerald-700 transition-colors mt-auto">
-              <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-              Unduh Formulir
-            </div>
-          </motion.a>
-        ))}
-      </motion.div>
+              {/* Download indicator */}
+              <div className="flex items-center gap-2 text-emerald-600 text-xs font-semibold group-hover:text-emerald-700 transition-colors mt-auto">
+                <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                Unduh Formulir
+              </div>
+            </motion.a>
+          ))}
+        </motion.div>
+      )}
+
+      {!loading && files.length === 0 && (
+        <div className="text-center py-12 text-sm text-slate-400">
+          Belum ada file yang tersedia untuk diunduh.
+        </div>
+      )}
     </motion.div>
   );
 }
 
 /* ─── Main Page ─── */
 export default function LayananPage() {
+  const { files, loading } = useDownloadFiles();
+
   return (
     <div className="py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -466,7 +378,7 @@ export default function LayananPage() {
         <PanduanMengisiFormulir />
 
         {/* Download Section */}
-        <DownloadSection />
+        <DownloadSection files={files} loading={loading} />
       </div>
     </div>
   );

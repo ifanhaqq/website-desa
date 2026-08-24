@@ -17,7 +17,12 @@ import {
   Calendar,
 } from "lucide-react";
 
-import BgHero from "../assets/img/hero.webp"
+import { useSiteSettings } from "../hooks/useSiteSettings";
+import { useTimeline } from "../hooks/useTimeline";
+import { useVisiMisi } from "../hooks/useVisiMisi";
+import { usePemerintahan } from "../hooks/usePemerintahan";
+
+import BgHeroFallback from "../assets/img/hero.webp";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -63,13 +68,32 @@ function PlaceholderImage({ label, className = "" }) {
   );
 }
 
+/* ─── Skeleton Loader ─── */
+function SectionSkeleton() {
+  return (
+    <div className="animate-pulse space-y-4 py-8">
+      <div className="h-6 bg-slate-200 rounded-lg w-1/3 mx-auto" />
+      <div className="h-4 bg-slate-200 rounded-lg w-1/2 mx-auto" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <div className="h-32 bg-slate-100 rounded-2xl" />
+        <div className="h-32 bg-slate-100 rounded-2xl" />
+      </div>
+    </div>
+  );
+}
+
 /* ─── Hero Section ─── */
-function HeroSection() {
+function HeroSection({ settings }) {
+  const heroImage = settings?.hero_image_url || BgHeroFallback;
+  const titleLine1 = settings?.hero_title_line1 || "Selamat Datang di";
+  const titleLine2 = settings?.hero_title_line2 || "Desa Kliris";
+  const subtitle = settings?.hero_subtitle || "Kecamatan Boja, Kabupaten Kendal, Provinsi Jawa Tengah";
+
   return (
     <section className="relative w-full aspect-video max-h-[70vh] overflow-hidden">
       {/* Hero Background Image */}
       <img
-        src={BgHero}
+        src={heroImage}
         alt="Pemandangan Desa"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -87,12 +111,12 @@ function HeroSection() {
         >
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-            Selamat Datang di
+            {titleLine1}
             <br />
-            <span className="text-emerald-300">Desa Kliris</span>
+            <span className="text-emerald-300">{titleLine2}</span>
           </h1>
           <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Kecamatan Boja, Kabupaten Kendal, Provinsi Jawa Tengah
+            {subtitle}
           </p>
         </motion.div>
       </div>
@@ -121,19 +145,13 @@ function TreePineIcon(props) {
 }
 
 /* ─── Sejarah Desa ─── */
-const kepalaDesaTimeline = [
-  { nama: "Demang Umbul", periode: "Era Demang", keterangan: "Pimpinan pertama Desa Kliris dengan jabatan Demang." },
-  { nama: "Bapak Soetarjo", periode: "1938 – 1952", keterangan: "Kepala Desa pertama setelah era Demang." },
-  { nama: "Bapak Meru Sammusi", periode: "1952 – 1960", keterangan: "Melanjutkan kepemimpinan Desa Kliris." },
-  { nama: "Bapak Sukardi Admowiyoto", periode: "1960 – 1982", keterangan: "Memulai pembenahan pembangunan, bahkan merelakan harta pribadi demi kemajuan desa." },
-  { nama: "Ibu Hartini S", periode: "1982 – 1990", keterangan: "Melanjutkan administrasi dari era sebelumnya." },
-  { nama: "Bapak Kiswanto", periode: "1990 – 1998", keterangan: "Terpilih melalui pemilihan Kepala Desa." },
-  { nama: "Ibu Hartini S", periode: "1998 – 2007", keterangan: "Kembali menjabat sebagai Kepala Desa." },
-  { nama: "Bapak Harsono", periode: "2007 – 2020", keterangan: "Menjabat dua periode kepemimpinan." },
-  { nama: "Ibu Dwi Mayanti Intansih", periode: "2020 – Sekarang", keterangan: "Kepala Desa Kliris saat ini." },
-];
+function SejarahSection({ settings, timeline }) {
+  const quote = settings?.sejarah_quote || 'Desa Kliris berasal dari kata "TIRIS" yang dilambangkan di Makam Sokorini';
+  const quoteSubheading = settings?.sejarah_quote_subheading || "Sumber Air Kehidupan";
+  const p1 = settings?.sejarah_paragraph_1 || "";
+  const p2 = settings?.sejarah_paragraph_2 || "";
+  const p3 = settings?.sejarah_paragraph_3 || "";
 
-function SejarahSection() {
   return (
     <section className="py-16 lg:py-24 relative overflow-hidden">
       {/* Decorative background elements */}
@@ -177,9 +195,7 @@ function SejarahSection() {
                 <div className="relative">
                   <Quote className="w-10 h-10 text-white/30 mb-4 rotate-180" />
                   <blockquote className="text-lg lg:text-xl font-semibold text-white leading-relaxed mb-4">
-                    Desa Kliris berasal dari kata{" "}
-                    <span className="text-emerald-200 font-bold">"TIRIS"</span>{" "}
-                    yang dilambangkan di Makam Sokorini
+                    {quote}
                   </blockquote>
                   <div className="flex items-center gap-3 mt-6">
                     <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
@@ -187,7 +203,7 @@ function SejarahSection() {
                     </div>
                     <div>
                       <p className="text-emerald-100 text-sm font-medium">
-                        Sumber Air Kehidupan
+                        {quoteSubheading}
                       </p>
                       <p className="text-emerald-200/70 text-xs">
                         Asal mula nama Desa Kliris
@@ -200,24 +216,9 @@ function SejarahSection() {
               {/* Right: Story content */}
               <div className="lg:col-span-3 p-8 lg:p-10">
                 <div className="space-y-5 text-slate-600 leading-relaxed text-sm lg:text-base">
-                  <p>
-                    Berdasarkan cerita penggalan-penggalan sejarah yang diceritakan oleh sesepuh
-                    masyarakat Desa Kliris, berhasil dirangkum cerita sejarah singkat. Sesungguhnya Desa Kliris
-                    berasal dari kata <strong className="text-emerald-700">"TIRIS"</strong> yang
-                    dilambangkan di Makam Sokorini — ada sebuah batu berlambang (gumukan kecil) yang konon
-                    dulunya bisa memancarkan air.
-                  </p>
-                  <p>
-                    Dalam bahasa Jawa dinamakan <strong className="text-emerald-700">"TIRIS"</strong>,
-                    dan dari pancaran air tersebut dipercaya bisa memakmurkan suatu wilayah. Apabila air
-                    tersebut memancar ke arah utara, maka wilayah itu akan menjadi makmur, dan seterusnya.
-                  </p>
-                  <p>
-                    Di samping "TIRIS", di dekatnya ada seperangkat alat gamelan. Konon kabarnya, bilamana
-                    alat tersebut mau dipinjam oleh masyarakat, harus dengan cara selamatan di makam
-                    tersebut, maka peralatan tersebut akan muncul. Sekarang tinggal puing-puing yang
-                    berupa batu.
-                  </p>
+                  {p1 && <p>{p1}</p>}
+                  {p2 && <p>{p2}</p>}
+                  {p3 && <p>{p3}</p>}
                 </div>
               </div>
             </div>
@@ -225,138 +226,93 @@ function SejarahSection() {
         </motion.div>
 
         {/* Leadership Timeline */}
-        <motion.div {...fadeInUp} className="mb-4">
-          <div className="text-center mb-10 lg:mb-12">
-            <h3 className="text-2xl lg:text-3xl font-bold text-slate-800 mb-3">
-              Perjalanan Kepemimpinan Desa
-            </h3>
-            <p className="text-slate-500 max-w-lg mx-auto">
-              Dari era Demang hingga saat ini, Desa Kliris telah dipimpin oleh pemimpin-pemimpin yang berdedikasi.
-            </p>
-          </div>
-        </motion.div>
+        {timeline.length > 0 && (
+          <>
+            <motion.div {...fadeInUp} className="mb-4">
+              <div className="text-center mb-10 lg:mb-12">
+                <h3 className="text-2xl lg:text-3xl font-bold text-slate-800 mb-3">
+                  Perjalanan Kepemimpinan Desa
+                </h3>
+                <p className="text-slate-500 max-w-lg mx-auto">
+                  Dari era Demang hingga saat ini, Desa Kliris telah dipimpin oleh pemimpin-pemimpin yang berdedikasi.
+                </p>
+              </div>
+            </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line — desktop center, mobile left */}
-          <div className="absolute left-5 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-200 lg:-translate-x-px" />
+            {/* Timeline */}
+            <div className="relative">
+              {/* Vertical line — desktop center, mobile left */}
+              <div className="absolute left-5 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-200 lg:-translate-x-px" />
 
-          <div className="space-y-6 lg:space-y-8">
-            {kepalaDesaTimeline.map((item, index) => {
-              const isLeft = index % 2 === 0;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  className={`relative flex items-start gap-4 lg:gap-0 ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
-                    }`}
-                >
-                  {/* Mobile dot */}
-                  <div className="lg:hidden relative z-10 flex-shrink-0">
-                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/25">
-                      <Calendar className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Content card */}
-                  <div className={`flex-1 lg:w-[calc(50%-2rem)] ${isLeft ? "lg:pr-12" : "lg:pl-12"
-                    }`}>
-                    <div className="group bg-white rounded-2xl border border-slate-100 p-5 lg:p-6 shadow-sm hover:shadow-lg hover:border-emerald-100 transition-all duration-300">
-                      <div className="flex items-start gap-4">
-                        {/* Icon */}
-                        <div className="hidden sm:flex w-12 h-12 bg-emerald-50 rounded-xl items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
-                          <Crown className="w-5 h-5 text-emerald-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
-                            <Calendar className="w-3 h-3" />
-                            {item.periode}
-                          </span>
-                          <h4 className="font-semibold text-slate-800 text-base lg:text-lg mb-1">
-                            {item.nama}
-                          </h4>
-                          <p className="text-sm text-slate-500 leading-relaxed">
-                            {item.keterangan}
-                          </p>
+              <div className="space-y-6 lg:space-y-8">
+                {timeline.map((item, index) => {
+                  const isLeft = index % 2 === 0;
+                  return (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      className={`relative flex items-start gap-4 lg:gap-0 ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
+                        }`}
+                    >
+                      {/* Mobile dot */}
+                      <div className="lg:hidden relative z-10 flex-shrink-0">
+                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/25">
+                          <Calendar className="w-4 h-4 text-white" />
                         </div>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Desktop center dot */}
-                  <div className="hidden lg:flex absolute left-1/2 top-5 -translate-x-1/2 z-10">
-                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/25 ring-4 ring-white">
-                      <span className="text-white text-xs font-bold">{index + 1}</span>
-                    </div>
-                  </div>
+                      {/* Content card */}
+                      <div className={`flex-1 lg:w-[calc(50%-2rem)] ${isLeft ? "lg:pr-12" : "lg:pl-12"
+                        }`}>
+                        <div className="group bg-white rounded-2xl border border-slate-100 p-5 lg:p-6 shadow-sm hover:shadow-lg hover:border-emerald-100 transition-all duration-300">
+                          <div className="flex items-start gap-4">
+                            {/* Icon */}
+                            <div className="hidden sm:flex w-12 h-12 bg-emerald-50 rounded-xl items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
+                              <Crown className="w-5 h-5 text-emerald-600" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-full mb-2">
+                                <Calendar className="w-3 h-3" />
+                                {item.periode}
+                              </span>
+                              <h4 className="font-semibold text-slate-800 text-base lg:text-lg mb-1">
+                                {item.nama}
+                              </h4>
+                              <p className="text-sm text-slate-500 leading-relaxed">
+                                {item.keterangan}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                  {/* Spacer for the other side on desktop */}
-                  <div className="hidden lg:block lg:w-[calc(50%-2rem)]" />
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
+                      {/* Desktop center dot */}
+                      <div className="hidden lg:flex absolute left-1/2 top-5 -translate-x-1/2 z-10">
+                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/25 ring-4 ring-white">
+                          <span className="text-white text-xs font-bold">{index + 1}</span>
+                        </div>
+                      </div>
+
+                      {/* Spacer for the other side on desktop */}
+                      <div className="hidden lg:block lg:w-[calc(50%-2rem)]" />
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
 }
 
 /* ─── Visi & Misi ─── */
-const visiMisiData = [
-  {
-    icon: Eye,
-    title: "Visi",
-    description:
-      "\"Kebersamaan Dalam Membangun demi Desa Kliris Yang Lebih Maju\" — Bersatu Membangun Desa Kliris menjadi Desa yang lebih baik, maju, sejahtera, dan bermartabat.",
-    color: "emerald",
-  },
-  {
-    icon: Target,
-    title: "Misi 1",
-    description:
-      "Meningkatkan pembangunan infrastruktur yang mendukung pereknomian desa seperti jalan, jembatan, serta infrastruktur strategis lainnya.",
-    color: "teal",
-  },
-  {
-    icon: Heart,
-    title: "Misi 2",
-    description:
-      "Meningkatkan pembangunan di bidang kesehatan untuk mendorong derajat kesehatan masyarakat agar dapat berkerja lebih optimal dan memiliki harapan hidup yang lebih panjang.",
-    color: "cyan",
-  },
-  {
-    icon: Users,
-    title: "Misi 3",
-    description:
-      "Meningkatkan pembangunan di bidang pendidikan untuk mendorong peningkatan kualitas sumber daya manusia agar memiliki kecerdasan dan daya saing yang lebih baik.",
-    color: "emerald",
-  },
-  {
-    icon: BookOpen,
-    title: "Misi 4",
-    description:
-      "Meningkatkan pembangunan ekonomi mendorong semakin tumbuh dan berkembangnya pembangunna di bidang pertanian dalam arti luas, industri, perdagangan, dan pariwisata.",
-    color: "teal",
-  },
-  {
-    icon: Landmark,
-    title: "Misi 5",
-    description:
-      "Menciptakan tata kelola pemerintahan yang baik (good govermence) berdasarkan demokratisasi, transparansi, penegakan hukum, berkeadilan, kesetaraan gender, dan mengutamakan pelyanan kepada masyarakat.",
-    color: "cyan",
-  },
-  {
-    icon: Sparkles,
-    title: "Misi 6",
-    description:
-      "Mengupayakan pelestarian sumber daya alam untuk memenuhi kebutuhan dan pemerataan pembangunan guna meningkatkan perekonomian.",
-    color: "emerald",
-  },
-];
+const visiMisiIcons = [Eye, Target, Heart, Users, BookOpen, Landmark, Sparkles];
+const visiMisiColors = ["emerald", "teal", "cyan", "emerald", "teal", "cyan", "emerald"];
 
 const colorClasses = {
   emerald: {
@@ -376,7 +332,7 @@ const colorClasses = {
   },
 };
 
-function VisiMisiSection() {
+function VisiMisiSection({ visiMisi }) {
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -393,12 +349,13 @@ function VisiMisiSection() {
           {...staggerContainer}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {visiMisiData.map((item, index) => {
-            const colors = colorClasses[item.color];
-            const Icon = item.icon;
+          {visiMisi.map((item, index) => {
+            const colorKey = visiMisiColors[index % visiMisiColors.length];
+            const colors = colorClasses[colorKey];
+            const Icon = visiMisiIcons[index % visiMisiIcons.length];
             return (
               <motion.div
-                key={index}
+                key={item.id}
                 {...staggerItem}
                 whileHover={{ y: -4 }}
                 className={`p-6 rounded-2xl border ${colors.border} ${colors.bg} transition-all duration-300 cursor-default`}
@@ -424,23 +381,7 @@ function VisiMisiSection() {
 }
 
 /* ─── Struktur Pemerintahan ─── */
-const pemerintahanData = [
-  { nama: "Dwi Mayanti Intansih", jabatan: "Kepala Desa" },
-  { nama: "Mudiyono, S.Pd", jabatan: "Sekretaris Desa" },
-  { nama: "Puji Prihartono", jabatan: "Kaur Keuangan" },
-  { nama: "Purnomo", jabatan: "Kaur Perencanaan" },
-  { nama: "Warsito", jabatan: "Kaur Tata Usaha & Umum" },
-  { nama: "Abdul Rohman", jabatan: "Kasi Kesejahteraan" },
-  { nama: "Sukamto", jabatan: "Kasi Pemerintahan" },
-  { nama: "Muchyidin", jabatan: "Kasi Pelayanan" },
-  { nama: "Bunak Yanto", jabatan: "Kadus I" },
-  { nama: "Siti Chotidjah", jabatan: "Kadus II" },
-  { nama: "Tukiyatman", jabatan: "Kadus III" },
-  { nama: "Sulistiyono", jabatan: "Kadus IV" },
-  { nama: "Muhamad Saefudin", jabatan: "Kadus V" },
-];
-
-function PemerintahanSection() {
+function PemerintahanSection({ pemerintahan }) {
   return (
     <section className="py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -456,19 +397,29 @@ function PemerintahanSection() {
           {...staggerContainer}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {pemerintahanData.map((person, index) => (
+          {pemerintahan.map((person, index) => (
             <motion.div
-              key={index}
+              key={person.id}
               {...staggerItem}
               whileHover={{ y: -4 }}
               className="group bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
             >
-              {/* Photo placeholder 16:9 */}
-              <div className="relative aspect-video bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center">
-                <div className="w-16 h-16 bg-slate-300 rounded-full flex items-center justify-center mb-2">
-                  <Users className="w-8 h-8 text-slate-400" />
-                </div>
-                <span className="text-xs text-slate-400">Foto Perangkat Desa</span>
+              {/* Photo or placeholder */}
+              <div className="relative aspect-video bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center overflow-hidden">
+                {person.foto_url ? (
+                  <img
+                    src={person.foto_url}
+                    alt={person.nama}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <>
+                    <div className="w-16 h-16 bg-slate-300 rounded-full flex items-center justify-center mb-2">
+                      <Users className="w-8 h-8 text-slate-400" />
+                    </div>
+                    <span className="text-xs text-slate-400">Foto Perangkat Desa</span>
+                  </>
+                )}
                 <div className="absolute top-2 right-2 bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
                   {index + 1}
                 </div>
@@ -490,14 +441,16 @@ function PemerintahanSection() {
 }
 
 /* ─── Letak Geografis ─── */
-const batasDesa = [
-  { arah: "Utara", deskripsi: "Desa Bubakan, Kecamatan Mijen, Kota Semarang" },
-  { arah: "Selatan", deskripsi: "Desa Puguh, Kecamatan Boja" },
-  { arah: "Timur", deskripsi: "Desa Leban dan Desa Pasigitan, Kecamatan Boja" },
-  { arah: "Barat", deskripsi: "Desa Ngabean, Kecamatan Boja" },
-];
+function GeografiSection({ settings }) {
+  const description = settings?.geografi_description || "";
+  const mapUrl = settings?.geografi_map_url || "https://www.openstreetmap.org/export/embed.html?bbox=110.3136%2C-7.1238%2C110.3336%2C-7.1038&layer=mapnik&marker=-7.1138%2C110.3236";
+  const batasDesa = [
+    { arah: "Utara", deskripsi: settings?.batas_utara || "" },
+    { arah: "Selatan", deskripsi: settings?.batas_selatan || "" },
+    { arah: "Timur", deskripsi: settings?.batas_timur || "" },
+    { arah: "Barat", deskripsi: settings?.batas_barat || "" },
+  ].filter((b) => b.deskripsi);
 
-function GeografiSection() {
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -512,40 +465,40 @@ function GeografiSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Text content */}
           <motion.div {...fadeInUp}>
-            <p className="text-slate-600 leading-relaxed mb-6">
-              Desa Kliris merupakan salah satu desa yang berada di Kecamatan Boja, Kabupaten Kendal,
-              Provinsi Jawa Tengah. Desa ini memiliki letak yang strategis karena berada di jalur Jalan Raya
-              Bubakan–Gonoharjo Limbangan dan Pasigitan–Boja. Secara topografi, Desa Kliris berada di
-              wilayah pegunungan dengan ketinggian sekitar 635 meter di atas permukaan laut, suhu rata-rata
-              22–27°C, serta curah hujan sekitar 1.823 mm/tahun. Sebagian besar wilayah desa dimanfaatkan
-              untuk lahan pertanian, permukiman, dan perkebunan sehingga mayoritas penduduk bekerja
-              sebagai petani, buruh tani, buruh bangunan, dan buruh industri. Luas wilayah ± 264,829 hektar.
-            </p>
-            <h4 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
-              <Compass className="w-5 h-5 text-emerald-500" />
-              Batas Wilayah Desa
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {batasDesa.map((batas, index) => (
-                <motion.div
-                  key={index}
-                  {...staggerItem}
-                  className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100"
-                >
-                  <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-emerald-600" />
-                  </div>
-                  <div>
-                    <span className="text-xs text-slate-400 uppercase tracking-wider font-medium">
-                      {batas.arah}
-                    </span>
-                    <p className="text-sm text-slate-700 font-medium">
-                      {batas.deskripsi}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            {description && (
+              <p className="text-slate-600 leading-relaxed mb-6">
+                {description}
+              </p>
+            )}
+            {batasDesa.length > 0 && (
+              <>
+                <h4 className="font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                  <Compass className="w-5 h-5 text-emerald-500" />
+                  Batas Wilayah Desa
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {batasDesa.map((batas, index) => (
+                    <motion.div
+                      key={index}
+                      {...staggerItem}
+                      className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100"
+                    >
+                      <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-4 h-4 text-emerald-600" />
+                      </div>
+                      <div>
+                        <span className="text-xs text-slate-400 uppercase tracking-wider font-medium">
+                          {batas.arah}
+                        </span>
+                        <p className="text-sm text-slate-700 font-medium">
+                          {batas.deskripsi}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </>
+            )}
           </motion.div>
 
           {/* Embedded Map */}
@@ -553,7 +506,7 @@ function GeografiSection() {
             <div className="relative aspect-video rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
               <iframe
                 title="Lokasi Desa Kliris"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=110.3136%2C-7.1238%2C110.3336%2C-7.1038&layer=mapnik&marker=-7.1138%2C110.3236"
+                src={mapUrl}
                 className="absolute inset-0 w-full h-full border-0"
                 loading="lazy"
                 allowFullScreen
@@ -568,13 +521,30 @@ function GeografiSection() {
 
 /* ─── Main Page ─── */
 export default function ProfilPage() {
+  const { settings, loading: settingsLoading } = useSiteSettings();
+  const { timeline, loading: timelineLoading } = useTimeline();
+  const { visiMisi, loading: visiMisiLoading } = useVisiMisi();
+  const { pemerintahan, loading: pemerintahanLoading } = usePemerintahan();
+
+  const isLoading = settingsLoading || timelineLoading || visiMisiLoading || pemerintahanLoading;
+
   return (
     <div>
-      <HeroSection />
-      <SejarahSection />
-      <VisiMisiSection />
-      <PemerintahanSection />
-      <GeografiSection />
+      <HeroSection settings={settings} />
+      {isLoading ? (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionSkeleton />
+          <SectionSkeleton />
+          <SectionSkeleton />
+        </div>
+      ) : (
+        <>
+          <SejarahSection settings={settings} timeline={timeline} />
+          {visiMisi.length > 0 && <VisiMisiSection visiMisi={visiMisi} />}
+          {pemerintahan.length > 0 && <PemerintahanSection pemerintahan={pemerintahan} />}
+          <GeografiSection settings={settings} />
+        </>
+      )}
     </div>
   );
 }

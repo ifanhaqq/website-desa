@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import LogoKliris from "../assets/img/logo-kliris.webp";
+import { useSiteSettings } from "../hooks/useSiteSettings";
 
 const navLinks = [
   { path: "/", label: "Profil Desa" },
@@ -120,7 +121,13 @@ function Navbar() {
   );
 }
 
-function Footer() {
+function Footer({ settings }) {
+  const alamat = settings?.kontak_alamat || "Jl. Sokorini No. 01, Dsn. Krajan Rt.01 Rw.01, Desa Kliris, Kec. Boja, Kendal";
+  const telepon = settings?.kontak_telepon || "-";
+  const email = settings?.kontak_email || "desakliris001@gmail.com";
+  const jamLayanan = settings?.jam_layanan || "Senin - Jumat: 09.00 - 14.00";
+  const ketLibur = settings?.jam_keterangan_libur || "Akhir Pekan Tutup";
+
   return (
     <footer className="bg-slate-900 text-slate-300">
       {/* Top gradient border */}
@@ -152,17 +159,15 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                <span>
-                  Jl. Sokorini No. 01, Dsn. Krajan Rt.01 Rw.01, Desa Kliris, Kec. Boja, Kendal
-                </span>
+                <span>{alamat}</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>-</span>
+                <span>{telepon}</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>desakliris001@gmail.com</span>
+                <span>{email}</span>
               </li>
             </ul>
           </div>
@@ -175,11 +180,11 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-sm">
                 <Clock className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Senin - Jumat: 09.00 - 14.00</span>
+                <span>{jamLayanan}</span>
               </li>
 
               <li className="text-sm text-slate-500">
-                Akhir Pekan Tutup
+                {ketLibur}
               </li>
             </ul>
           </div>
@@ -219,13 +224,15 @@ function Footer() {
 }
 
 export default function Layout() {
+  const { settings } = useSiteSettings();
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       <Navbar />
       <main className="flex-1 pt-16 lg:pt-20">
         <Outlet />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </div>
   );
 }
